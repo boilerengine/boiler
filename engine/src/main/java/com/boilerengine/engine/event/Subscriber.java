@@ -51,7 +51,7 @@ public interface Subscriber<Type extends Event> extends Component {
                 final Type type = clazz.cast(event);
 
                 for (BiPredicate<Subscriber<Type>, Type> predicate : predicates) {
-                    if (predicate.test(this, type)) {
+                    if (!predicate.test(this, type)) {
                         return;
                     }
                 }
