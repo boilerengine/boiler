@@ -8,7 +8,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public class AbstractComponent implements Component {
 
     private final Set<Component> components = new CopyOnWriteArraySet<>();
-    private boolean enabled = false;
+    protected boolean enabled = false;
 
     @Override public @NotNull AbstractComponent enable() {
         components.forEach(Component::enable);
@@ -23,8 +23,12 @@ public class AbstractComponent implements Component {
     }
 
     @Override public @NotNull AbstractComponent bindWith(@NotNull Component component) {
-        components.add(component);
+        component.getComponents().add(this);
         return this;
+    }
+
+    @NotNull @Override public Set<Component> getComponents() {
+        return components;
     }
 
     @Override public boolean isEnabled() {

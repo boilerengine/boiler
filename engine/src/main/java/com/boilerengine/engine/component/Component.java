@@ -2,6 +2,8 @@ package com.boilerengine.engine.component;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Set;
+
 public interface Component {
 
     @NotNull Component enable();
@@ -9,6 +11,8 @@ public interface Component {
     @NotNull Component disable();
 
     @NotNull Component bindWith(@NotNull Component component);
+
+    @NotNull Set<Component> getComponents();
 
     boolean isEnabled();
 
